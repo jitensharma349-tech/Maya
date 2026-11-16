@@ -1,127 +1,116 @@
-
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="hi-Latn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#101026">
-  <title>THE JITEN AI | AI Apps</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #101026;
-      color: white;
-      line-height: 1.6;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maya — Tumhara apna AI assistant</title>
+<meta name="description" content="Maya ek free Android AI assistant hai jo Hindi aur English me baat karti hai, camera se dekhti hai aur tumhare kaam me madad karti hai.">
+<style>
+  :root{
+    --bg:#eef3ff; --bg2:#dce6fa; --ink:#1b2a55; --muted:#4a5b8c; --card:#ffffffcc; --line:#c9d8f5;
+    --blue:#2f6bff; --blue-ink:#ffffff; --soft:#e3ecfc; --warn:#fff1dc; --warn-ink:#8a4b0a;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0e1630; --bg2:#14204a; --ink:#eaf0ff; --muted:#a9b8e0; --card:#1a2755cc; --line:#2d3f7a;
+      --blue:#5b8dff; --blue-ink:#0b1430; --soft:#22336b; --warn:#3a2c12; --warn-ink:#ffd9a0;
     }
-    header {
-      padding: 22px 16px;
-      text-align: center;
-      background: #191936;
-      border-bottom: 1px solid #393963;
-    }
-    header h1 {
-      margin: 0;
-      color: #b9a4ff;
-      letter-spacing: 2px;
-    }
-    nav { margin-top: 12px; }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 8px;
-      font-size: 14px;
-    }
-    .hero {
-      text-align: center;
-      padding: 75px 20px;
-      background: linear-gradient(140deg, #29205b, #101026);
-    }
-    .hero h2 {
-      font-size: 38px;
-      margin: 0 0 12px;
-    }
-    .hero p {
-      color: #d0cce5;
-      max-width: 550px;
-      margin: auto;
-    }
-    .section {
-      padding: 42px 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-    .section h2 { color: #b9a4ff; }
-    .app-card {
-      background: #1c1c3b;
-      border: 1px solid #444477;
-      border-radius: 16px;
-      padding: 24px;
-      margin-top: 18px;
-    }
-    .button {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 11px 20px;
-      background: #8064e9;
-      color: white;
-      text-decoration: none;
-      border-radius: 9px;
-      font-weight: bold;
-    }
-    footer {
-      text-align: center;
-      padding: 25px 15px;
-      background: #191936;
-      color: #c4c0d8;
-    }
-  </style>
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; min-height:100vh; color:var(--ink); background:linear-gradient(180deg,var(--bg2),var(--bg));
+    font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  .wrap{max-width:880px; margin:0 auto; padding:0 16px}
+  header{display:flex; align-items:center; gap:10px; padding:18px 0}
+  .logo{width:38px; height:38px; border-radius:11px; background:var(--blue); color:var(--blue-ink);
+        display:grid; place-items:center; font-weight:800; font-size:20px}
+  header b{font-size:18px}
+  .hero{padding:28px 0 12px}
+  h1{font-size:clamp(28px,6vw,44px); line-height:1.15; margin:0 0 12px; letter-spacing:-.01em}
+  .lead{font-size:clamp(16px,3.6vw,19px); color:var(--muted); margin:0 0 22px; max-width:56ch}
+  .btn{display:inline-block; background:var(--blue); color:var(--blue-ink); text-decoration:none; font-weight:700;
+       padding:15px 24px; border-radius:16px; font-size:17px}
+  .btn:focus-visible,a:focus-visible{outline:3px solid var(--ink); outline-offset:3px}
+  .meta{margin:12px 0 0; color:var(--muted); font-size:14px}
+  section{padding:26px 0 4px}
+  h2{font-size:22px; margin:0 0 14px}
+  .grid{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:20px; padding:16px 18px}
+  .card h3{margin:0 0 4px; font-size:16px}
+  .card p{margin:0; color:var(--muted); font-size:15px}
+  ol,ul{margin:0; padding-left:22px}
+  li{margin:8px 0}
+  .note{background:var(--warn); color:var(--warn-ink); border-radius:16px; padding:14px 16px; font-size:15px; margin-top:14px}
+  .steps li::marker{font-weight:700; color:var(--blue)}
+  footer{padding:30px 0 40px; color:var(--muted); font-size:14px}
+  code{background:var(--soft); padding:1px 6px; border-radius:6px; font-size:.92em}
+</style>
 </head>
 <body>
+<div class="wrap">
 
   <header>
-    <h1>THE JITEN AI</h1>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#apps">AI Apps</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <div class="logo" aria-hidden="true">M</div>
+    <b>Maya</b>
   </header>
 
-  <section class="hero" id="home">
-    <h2>Welcome to THE JITEN AI</h2>
-    <p>Discover AI applications created with creativity,
-       innovation and a vision for the future.</p>
-    <a class="button" href="#apps">Explore AI Apps</a>
-  </section>
-
-  <section class="section" id="apps">
-    <h2>Our AI Apps</h2>
-    <div class="app-card">
-      <h3>Maya AI</h3>
-      <p>Meet Maya, an AI assistant project by THE JITEN AI.</p>
-      <p>Official app download will be available here soon.</p>
+  <main>
+    <div class="hero">
+      <h1>Maya: tumhari apni AI saathi</h1>
+      <p class="lead">Hindi aur English me baat karti hai, camera se dekh kar batati hai, WhatsApp messages padh kar sunati hai aur tumhare chhote chhote kaam kar deti hai.</p>
+      <a class="btn" href="maya.apk" download>Maya download karo</a>
+      <p class="meta">Android 8.0 ya naya &nbsp;•&nbsp; Download free hai &nbsp;•&nbsp; Maya ek AI hai, insaan nahi</p>
     </div>
-  </section>
 
-  <section class="section" id="about">
-    <h2>About the Creator</h2>
-    <p><strong>The Jiten AI</strong> is the creator identity
-       behind these AI app projects, focused on creativity,
-       learning and innovation.</p>
-  </section>
+    <section aria-labelledby="kya">
+      <h2 id="kya">Maya kya kar sakti hai</h2>
+      <div class="grid">
+        <div class="card"><h3>Awaaz me baat</h3><p>Bol kar poocho, Maya bol kar jawab degi. Hindi aur English dono.</p></div>
+        <div class="card"><h3>Camera</h3><p>Camera ya photo dikhao, Maya dekh kar batayegi.</p></div>
+        <div class="card"><h3>WhatsApp padhna</h3><p>Naye message kisne bheje, Maya sunayegi (notification access dene par).</p></div>
+        <div class="card"><h3>Web khoj</h3><p>Taaza jaankari ke liye internet par khoj sakti hai.</p></div>
+        <div class="card"><h3>Phone aur Alarm</h3><p>Number likh kar dialer kholo, alarm lagwao.</p></div>
+        <div class="card"><h3>Yaaddasht</h3><p>Tumhara naam, pasand aur notes yaad rakhti hai.</p></div>
+      </div>
+    </section>
 
-  <section class="section" id="contact">
-    <h2>Contact & Support</h2>
-    <p>For support and updates, please visit this website
-       again. Contact details will be added here.</p>
-  </section>
+    <section aria-labelledby="install">
+      <h2 id="install">Install kaise karein</h2>
+      <ol class="steps">
+        <li>Upar wala <b>Maya download karo</b> button dabao. File ka naam <code>maya.apk</code> hai.</li>
+        <li>Download ke baad file kholo. Phone puchhe to <b>"Is source se install karne do"</b> (Install unknown apps) ko allow karo.</li>
+        <li>Agar <b>Play Protect</b> chetawani de, to "More details" par dabao aur "Install anyway" chuno. Ye isliye aata hai kyunki Maya Play Store se nahi aa rahi.</li>
+        <li>Install ho jaye to Maya kholo.</li>
+      </ol>
+      <div class="note">Apne bharose ki jagah se hi APK install karo. Ye file sirf isi website se download karo.</div>
+    </section>
+
+    <section aria-labelledby="setup">
+      <h2 id="setup">Pehli baar set up (3 step)</h2>
+      <ol class="steps">
+        <li><b>Keys daalo.</b> Maya ko dimaag aur awaaz ke liye free API keys chahiye: <b>Groq</b> (baat-cheet) aur <b>Gemini</b> (camera). App ke andar "Free key lo" button seedha sahi page khol deta hai.</li>
+        <li><b>Phone use karne do.</b> "Sab allow karo" dabao. Sirf microphone zaroori hai, baaki tum apni marzi se de sakte ho.</li>
+        <li><b>Background me zinda rakho.</b> Battery optimisation band karo, taaki screen off hone par bhi Maya chale.</li>
+      </ol>
+      <div class="note"><b>Notification access ya Accessibility grey dikhe to:</b> Settings → Apps → Maya → teen bindu (⋮) → <b>"Allow restricted settings"</b>. Ye menu tab aata hai jab pehle un option par ek baar dabaya ho.</div>
+    </section>
+
+    <section aria-labelledby="privacy">
+      <h2 id="privacy">Privacy aur safety</h2>
+      <ul>
+        <li>Tumhari keys aur notes sirf tumhare phone ke app storage me rehti hain.</li>
+        <li>Jawab dene ke liye baat sirf tumhari chuni hui AI services (Groq, Gemini, ElevenLabs) ko bheji jaati hai.</li>
+        <li>Koi account ya login nahi chahiye.</li>
+        <li>Permissions tum jab chaho Settings se badal ya hata sakte ho.</li>
+      </ul>
+    </section>
+  </main>
 
   <footer>
-    <p>© 2026 THE JITEN AI. All rights reserved.</p>
+    Maya ko <b>Jiten AI</b> ne banaya hai. Abhi sirf Android ke liye.
   </footer>
-
+</div>
 </body>
 </html>
