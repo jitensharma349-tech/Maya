@@ -1,116 +1,127 @@
 <!doctype html>
-<html lang="hi-Latn">
+<html lang="hi">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Maya — Tumhara apna AI assistant</title>
-<meta name="description" content="Maya ek free Android AI assistant hai jo Hindi aur English me baat karti hai, camera se dekhti hai aur tumhare kaam me madad karti hai.">
+<title>Maya AI — Tumhari apni AI saathi</title>
+<meta name="description" content="Maya AI — Hindi aur English mein baat, voice, camera, memory aur personal assistant features. Android app free download.">
+<meta name="theme-color" content="#dcecff">
 <style>
-  :root{
-    --bg:#eef3ff; --bg2:#dce6fa; --ink:#1b2a55; --muted:#4a5b8c; --card:#ffffffcc; --line:#c9d8f5;
-    --blue:#2f6bff; --blue-ink:#ffffff; --soft:#e3ecfc; --warn:#fff1dc; --warn-ink:#8a4b0a;
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --bg:#0e1630; --bg2:#14204a; --ink:#eaf0ff; --muted:#a9b8e0; --card:#1a2755cc; --line:#2d3f7a;
-      --blue:#5b8dff; --blue-ink:#0b1430; --soft:#22336b; --warn:#3a2c12; --warn-ink:#ffd9a0;
-    }
-  }
-  *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
-  body{
-    margin:0; min-height:100vh; color:var(--ink); background:linear-gradient(180deg,var(--bg2),var(--bg));
-    font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  }
-  .wrap{max-width:880px; margin:0 auto; padding:0 16px}
-  header{display:flex; align-items:center; gap:10px; padding:18px 0}
-  .logo{width:38px; height:38px; border-radius:11px; background:var(--blue); color:var(--blue-ink);
-        display:grid; place-items:center; font-weight:800; font-size:20px}
-  header b{font-size:18px}
-  .hero{padding:28px 0 12px}
-  h1{font-size:clamp(28px,6vw,44px); line-height:1.15; margin:0 0 12px; letter-spacing:-.01em}
-  .lead{font-size:clamp(16px,3.6vw,19px); color:var(--muted); margin:0 0 22px; max-width:56ch}
-  .btn{display:inline-block; background:var(--blue); color:var(--blue-ink); text-decoration:none; font-weight:700;
-       padding:15px 24px; border-radius:16px; font-size:17px}
-  .btn:focus-visible,a:focus-visible{outline:3px solid var(--ink); outline-offset:3px}
-  .meta{margin:12px 0 0; color:var(--muted); font-size:14px}
-  section{padding:26px 0 4px}
-  h2{font-size:22px; margin:0 0 14px}
-  .grid{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
-  .card{background:var(--card); border:1px solid var(--line); border-radius:20px; padding:16px 18px}
-  .card h3{margin:0 0 4px; font-size:16px}
-  .card p{margin:0; color:var(--muted); font-size:15px}
-  ol,ul{margin:0; padding-left:22px}
-  li{margin:8px 0}
-  .note{background:var(--warn); color:var(--warn-ink); border-radius:16px; padding:14px 16px; font-size:15px; margin-top:14px}
-  .steps li::marker{font-weight:700; color:var(--blue)}
-  footer{padding:30px 0 40px; color:var(--muted); font-size:14px}
-  code{background:var(--soft); padding:1px 6px; border-radius:6px; font-size:.92em}
+:root{--ink:#12365e;--muted:#54708f;--blue:#1673cf;--blue2:#4aa7f4;--ice:#e8f4ff;--card:rgba(255,255,255,.83);--line:#c9e1f7;--shadow:0 12px 34px rgba(50,104,160,.14)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:linear-gradient(180deg,#d9edff 0%,#eef7ff 42%,#dcecff 100%);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background-image:radial-gradient(circle at 8% 12%,#fff 0 2px,transparent 3px),radial-gradient(circle at 81% 23%,#fff 0 3px,transparent 4px),radial-gradient(circle at 42% 45%,#fff 0 2px,transparent 3px),radial-gradient(circle at 74% 73%,#fff 0 2px,transparent 3px),radial-gradient(circle at 18% 83%,#fff 0 3px,transparent 4px);opacity:.8}
+a{color:inherit}.wrap{width:min(1080px,100% - 32px);margin:auto}
+header{position:sticky;top:0;z-index:10;background:rgba(235,247,255,.83);backdrop-filter:blur(16px);border-bottom:1px solid rgba(190,221,245,.75)}
+.nav{height:70px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:850;font-size:19px}
+.logo{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#58b6ff,#176bd0);color:white;box-shadow:0 5px 15px #5a9fe955;font-size:21px}
+.navlinks{display:flex;align-items:center;gap:22px}.navlinks a{text-decoration:none;color:var(--muted);font-weight:650;font-size:14px}.navlinks a:hover{color:var(--blue)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;text-decoration:none;font-weight:750;padding:13px 19px;border-radius:16px;background:linear-gradient(145deg,#2589e8,#1266c5);color:#fff;box-shadow:0 6px 16px #2e83d83d;transition:transform .18s,box-shadow .18s}.btn:hover{transform:translateY(-2px);box-shadow:0 10px 20px #2e83d84a}.btn.soft{background:linear-gradient(145deg,#fff,#e5f2ff);color:var(--blue);border:1px solid var(--line);box-shadow:var(--shadow)}
+.menuBtn{display:none;background:#fff;border:1px solid var(--line);border-radius:12px;padding:9px 12px;color:var(--blue);font-size:20px}
+.hero{padding:62px 0 32px;display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:center}
+.kicker{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:30px;padding:6px 12px;color:#2878bc;font-size:13px;font-weight:750;box-shadow:var(--shadow)}
+h1{font-size:clamp(34px,6.4vw,58px);line-height:1.08;letter-spacing:-1.6px;margin:18px 0 14px}h1 span{color:#1474ca}
+.lead{font-size:clamp(16px,2.4vw,19px);color:var(--muted);max-width:54ch;margin:0 0 22px}
+.actions{display:flex;gap:10px;flex-wrap:wrap}.tiny{font-size:13px;color:var(--muted);margin-top:12px}
+.heroVisual{min-height:330px;display:grid;place-items:center}.mock{width:min(100%,380px);padding:20px;border:1px solid #c8e2f7;border-radius:30px;background:linear-gradient(145deg,#ffffffd9,#e8f5ffcc);box-shadow:0 24px 60px #4b91c72c;transform:rotate(1deg)}
+.mockTop{display:flex;align-items:center;gap:10px;margin-bottom:16px}.avatar{width:48px;height:48px;border-radius:17px;background:linear-gradient(135deg,#76c6ff,#2773d5);display:grid;place-items:center;color:white;font-size:24px}.mockTitle{font-weight:800}.mockSub{font-size:12px;color:var(--muted)}.bubble{padding:12px 14px;border-radius:17px;margin:10px 0;font-size:14px}.bubble.ai{background:#fff;border:1px solid #d5e9f9;margin-right:24px}.bubble.user{background:#d7eaff;color:#225a91;margin-left:28px}.typing{display:flex;gap:5px;padding:10px}.typing i{width:6px;height:6px;border-radius:50%;background:#64a8e4}
+section{padding:34px 0 14px}.sectionHead{text-align:center;max-width:680px;margin:0 auto 22px}.sectionHead h2{font-size:clamp(24px,4vw,34px);line-height:1.2;margin:0 0 8px}.sectionHead p{margin:0;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{padding:19px;border:1px solid var(--line);border-radius:22px;background:var(--card);box-shadow:var(--shadow)}.icon{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:#e1f1ff;color:#2477c2;font-size:21px;margin-bottom:11px}.card h3{font-size:17px;margin:0 0 5px}.card p{margin:0;color:var(--muted);font-size:14px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.stepNum{font-weight:900;font-size:23px;color:#2582d0;margin-bottom:8px}
+.featureBand{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:center}.featureBand .card{padding:24px}.checklist{list-style:none;margin:14px 0 0;padding:0}.checklist li{margin:9px 0;color:var(--muted)}.checklist li:before{content:"✓";font-weight:900;color:#1782cf;margin-right:8px}
+.downloadBox{max-width:740px;margin:auto;text-align:center;padding:28px;background:linear-gradient(150deg,#fff,#d9eeff);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow)}.downloadBox h2{font-size:30px;margin:0 0 8px}.downloadBox p{color:var(--muted);margin:0 0 18px}
+details{padding:15px 17px;border-radius:17px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}details+details{margin-top:10px}summary{font-weight:750;cursor:pointer}details p{color:var(--muted);margin:9px 0 0;font-size:14px}
+footer{padding:36px 0 44px;color:var(--muted);font-size:14px}.footerGrid{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:20px}.footerLinks{display:flex;gap:14px;flex-wrap:wrap}.footerLinks a{text-decoration:none}
+.mobileNav{display:none;padding:0 0 16px}.mobileNav a{display:block;padding:10px 4px;text-decoration:none;color:var(--muted);font-weight:650}
+@media(max-width:760px){.navlinks{display:none}.menuBtn{display:block}.mobileNav.open{display:block}.hero{grid-template-columns:1fr;padding-top:42px}.heroVisual{min-height:auto}.mock{max-width:430px;transform:none}.grid{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}.featureBand{grid-template-columns:1fr}.wrap{width:min(100% - 24px,1080px)}}
+@media(max-width:440px){
+ .grid{grid-template-columns:1fr}.hero{padding-top:32px}
+ .actions{display:grid;grid-template-columns:1fr}.actions .btn{width:100%}
+ .downloadBox{padding:22px 17px}
+ header .nav{height:66px;gap:8px}
+ .brand{gap:7px;font-size:16px;white-space:nowrap;flex:0 0 auto}
+ .logo{width:36px;height:36px;border-radius:12px;font-size:19px}
+ header .nav>.btn{width:auto;flex:1 1 auto;min-width:0;padding:10px 9px;font-size:14px;white-space:nowrap}
+ .menuBtn{flex:0 0 auto;padding:8px 10px;font-size:19px}
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-
-  <header>
-    <div class="logo" aria-hidden="true">M</div>
-    <b>Maya</b>
-  </header>
-
-  <main>
-    <div class="hero">
-      <h1>Maya: tumhari apni AI saathi</h1>
-      <p class="lead">Hindi aur English me baat karti hai, camera se dekh kar batati hai, WhatsApp messages padh kar sunati hai aur tumhare chhote chhote kaam kar deti hai.</p>
-      <a class="btn" href="https://github.com/jitensharma349-tech/Maya/releases/latest/download/Maya-app.apk">Maya download karo</a>
-      <p class="meta">Android 8.0 ya naya &nbsp;•&nbsp; Download free hai &nbsp;•&nbsp; Maya ek AI hai, insaan nahi</p>
-    </div>
-
-    <section aria-labelledby="kya">
-      <h2 id="kya">Maya kya kar sakti hai</h2>
-      <div class="grid">
-        <div class="card"><h3>Awaaz me baat</h3><p>Bol kar poocho, Maya bol kar jawab degi. Hindi aur English dono.</p></div>
-        <div class="card"><h3>Camera</h3><p>Camera ya photo dikhao, Maya dekh kar batayegi.</p></div>
-        <div class="card"><h3>WhatsApp padhna</h3><p>Naye message kisne bheje, Maya sunayegi (notification access dene par).</p></div>
-        <div class="card"><h3>Web khoj</h3><p>Taaza jaankari ke liye internet par khoj sakti hai.</p></div>
-        <div class="card"><h3>Phone aur Alarm</h3><p>Number likh kar dialer kholo, alarm lagwao.</p></div>
-        <div class="card"><h3>Yaaddasht</h3><p>Tumhara naam, pasand aur notes yaad rakhti hai.</p></div>
-      </div>
-    </section>
-
-    <section aria-labelledby="install">
-      <h2 id="install">Install kaise karein</h2>
-      <ol class="steps">
-        <li>Upar wala <b>Maya download karo</b> button dabao. File ka naam <code>maya.apk</code> hai.</li>
-        <li>Download ke baad file kholo. Phone puchhe to <b>"Is source se install karne do"</b> (Install unknown apps) ko allow karo.</li>
-        <li>Agar <b>Play Protect</b> chetawani de, to "More details" par dabao aur "Install anyway" chuno. Ye isliye aata hai kyunki Maya Play Store se nahi aa rahi.</li>
-        <li>Install ho jaye to Maya kholo.</li>
-      </ol>
-      <div class="note">Apne bharose ki jagah se hi APK install karo. Ye file sirf isi website se download karo.</div>
-    </section>
-
-    <section aria-labelledby="setup">
-      <h2 id="setup">Pehli baar set up (3 step)</h2>
-      <ol class="steps">
-        <li><b>Keys daalo.</b> Maya ko dimaag aur awaaz ke liye free API keys chahiye: <b>Groq</b> (baat-cheet) aur <b>Gemini</b> (camera). App ke andar "Free key lo" button seedha sahi page khol deta hai.</li>
-        <li><b>Phone use karne do.</b> "Sab allow karo" dabao. Sirf microphone zaroori hai, baaki tum apni marzi se de sakte ho.</li>
-        <li><b>Background me zinda rakho.</b> Battery optimisation band karo, taaki screen off hone par bhi Maya chale.</li>
-      </ol>
-      <div class="note"><b>Notification access ya Accessibility grey dikhe to:</b> Settings → Apps → Maya → teen bindu (⋮) → <b>"Allow restricted settings"</b>. Ye menu tab aata hai jab pehle un option par ek baar dabaya ho.</div>
-    </section>
-
-    <section aria-labelledby="privacy">
-      <h2 id="privacy">Privacy aur safety</h2>
-      <ul>
-        <li>Tumhari keys aur notes sirf tumhare phone ke app storage me rehti hain.</li>
-        <li>Jawab dene ke liye baat sirf tumhari chuni hui AI services (Groq, Gemini, ElevenLabs) ko bheji jaati hai.</li>
-        <li>Koi account ya login nahi chahiye.</li>
-        <li>Permissions tum jab chaho Settings se badal ya hata sakte ho.</li>
-      </ul>
-    </section>
-  </main>
-
-  <footer>
-    Maya ko <b>Jiten AI</b> ne banaya hai. Abhi sirf Android ke liye.
-  </footer>
-</div>
+<header>
+ <div class="wrap nav">
+  <a class="brand" href="#top"><span class="logo">M</span><span>Maya AI</span></a>
+  <nav class="navlinks" aria-label="Main navigation"><a href="#features">Features</a><a href="#how">How it works</a><a href="#privacy">Privacy</a><a href="#faq">FAQ</a></nav>
+  <a class="btn" href="https://github.com/jitensharma349-tech/Maya/releases/latest/download/Maya-app.apk">Download</a>
+  <button class="menuBtn" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+ </div>
+ <div class="wrap mobileNav" id="mobileNav"><a href="#features" onclick="toggleMenu()">Features</a><a href="#how" onclick="toggleMenu()">How it works</a><a href="#privacy" onclick="toggleMenu()">Privacy</a><a href="#faq" onclick="toggleMenu()">FAQ</a><a href="#contact" onclick="toggleMenu()">About / Contact</a></div>
+</header>
+<main id="top" class="wrap">
+<section class="hero">
+ <div>
+  <span class="kicker">❄️ Your personal AI companion</span>
+  <h1>The AI that helps <span>your world.</span></h1>
+  <p class="lead">Maya se Hindi ya English mein baat karo. Voice, camera, memory aur daily phone tasks — ek simple personal assistant mein.</p>
+  <div class="actions"><a class="btn" href="https://github.com/jitensharma349-tech/Maya/releases/latest/download/Maya-app.apk">↓ Free Android download</a><a class="btn soft" href="#features">Explore features</a></div>
+  <p class="tiny">Android 8.0+ · Free download · No account required</p>
+ </div>
+ <div class="heroVisual" aria-label="Maya chat preview">
+  <div class="mock"><div class="mockTop"><div class="avatar">M</div><div><div class="mockTitle">Maya</div><div class="mockSub">Your AI companion · Ready</div></div></div>
+   <div class="bubble ai">Namaste! Main Maya hoon. Aaj main tumhari kis kaam mein madad karun?</div>
+   <div class="bubble user">Mujhe aaj ke kaam yaad dila do.</div>
+   <div class="bubble ai">Bilkul. Tum apne kaam batao, main unhe note karne aur organize karne mein madad karungi.</div>
+   <div class="typing"><i></i><i></i><i></i></div>
+  </div>
+ </div>
+</section>
+<section id="features">
+ <div class="sectionHead"><h2>One assistant. Useful everyday features.</h2><p>Maya ke features tumhare phone par kaam ko aasan banane ke liye.</p></div>
+ <div class="grid">
+  <article class="card"><div class="icon">◉</div><h3>Voice conversation</h3><p>Bol kar sawaal karo aur supported voice setup ke saath jawab suno. Hindi aur English support.</p></article>
+  <article class="card"><div class="icon">▣</div><h3>Camera & vision</h3><p>Photo ya camera view share karo aur uske baare mein AI se poochho.</p></article>
+  <article class="card"><div class="icon">♡</div><h3>Personal memory</h3><p>Notes aur pasand ko yaad rakhne ke liye memory features, app setup ke mutabik.</p></article>
+  <article class="card"><div class="icon">⌕</div><h3>Web search</h3><p>Internet search feature ke through current information dhoondhne mein madad.</p></article>
+  <article class="card"><div class="icon">☎</div><h3>Phone shortcuts</h3><p>Phone actions jaise dialer kholna aur alarm set karna, zaroori permission ke saath.</p></article>
+  <article class="card"><div class="icon">▤</div><h3>Message reading</h3><p>Notification access enable karne par selected notifications ko padhne/sunane mein madad.</p></article>
+ </div>
+</section>
+<section id="how">
+ <div class="sectionHead"><h2>Get Maya running in 3 steps</h2><p>Simple setup — apni permissions aur API keys khud control karo.</p></div>
+ <div class="steps">
+  <article class="card"><div class="stepNum">01</div><h3>Download & install</h3><p>APK download karo, file open karo aur Android install prompts follow karo.</p></article>
+  <article class="card"><div class="stepNum">02</div><h3>Set up AI keys</h3><p>App ke setup screen mein required service keys add karo. Keys sirf trusted services se lo.</p></article>
+  <article class="card"><div class="stepNum">03</div><h3>Choose permissions</h3><p>Microphone aur optional phone features ko apni zaroorat ke hisaab se allow karo.</p></article>
+ </div>
+</section>
+<section id="memory">
+ <div class="featureBand">
+  <div class="card"><span class="kicker">Personal assistant</span><h2 style="margin:12px 0 6px">Your preferences, your pace.</h2><p style="color:var(--muted);margin:0">Maya ko apne tareeke se configure karo. Jo features chahiye unhe enable karo, baaki band rakho.</p><ul class="checklist"><li>Personalized conversations</li><li>Voice and language options</li><li>Notes and memory tools</li><li>Phone permissions under your control</li></ul></div>
+  <div class="card"><div class="icon">✦</div><h3>Maya Memory</h3><p>Apne important notes aur preferences ko app ke memory system mein manage karo. Sensitive details share karne se pehle privacy aur API settings check karo.</p></div>
+ </div>
+</section>
+<section id="privacy">
+ <div class="sectionHead"><h2>Privacy & control</h2><p>Clear permissions. Understand the services you use.</p></div>
+ <div class="grid">
+  <article class="card"><h3>Permissions</h3><p>Permissions Android settings se kabhi bhi review, revoke ya change kar sakte ho.</p></article>
+  <article class="card"><h3>API services</h3><p>AI features selected providers ko requests bhej sakte hain. Provider ki privacy policy aur key settings check karo.</p></article>
+  <article class="card"><h3>On-device details</h3><p>App notes, keys aur data storage ke exact behavior ke liye installed version ki settings aur privacy details dekho.</p></article>
+ </div>
+</section>
+<section id="download">
+ <div class="downloadBox"><h2>Meet your new AI companion</h2><p>Maya Android ke liye free download. Install guide website par available hai.</p><a class="btn" href="https://github.com/jitensharma349-tech/Maya/releases/latest/download/Maya-app.apk">Download Maya APK</a><p class="tiny">Android 8.0 or newer · Download at your own discretion</p></div>
+</section>
+<section id="faq">
+ <div class="sectionHead"><h2>Frequently asked questions</h2><p>Install aur setup se pehle in answers ko dekh lo.</p></div>
+ <details><summary>Maya free hai?</summary><p>Website ke current release ke mutabik APK free download hai. AI providers ki usage limits ya charges unki apni policies par depend kar sakte hain.</p></details>
+ <details><summary>Kya Maya internet use karti hai?</summary><p>AI chat, web search aur supported cloud features ke liye internet connection aur configured API keys ki zaroorat ho sakti hai.</p></details>
+ <details><summary>Install kaise karun?</summary><p>APK download karo, file open karo. Android agar permission maange to install unknown apps permission sirf us source ke liye allow karke install complete karo.</p></details>
+ <details><summary>Kaun se permissions zaroori hain?</summary><p>Microphone voice ke liye zaroori hai. Camera, notifications, contacts ya phone-related permissions sirf un features ke liye enable karo jo tum use karna chahte ho.</p></details>
+</section>
+<section id="contact">
+ <div class="sectionHead"><h2>About Maya</h2><p>Maya ek Android personal AI assistant project hai, created by Jiten AI.</p><a class="btn soft" href="https://github.com/jitensharma349-tech/Maya">View project on GitHub</a></div>
+</section>
+</main>
+<footer><div class="wrap footerGrid"><div>© Maya AI · Created by Jiten AI</div><div class="footerLinks"><a href="https://github.com/jitensharma349-tech/Maya">GitHub</a><a href="#privacy">Privacy</a><a href="#top">Back to top ↑</a></div></div></footer>
+<script>function toggleMenu(){document.getElementById('mobileNav').classList.toggle('open')}</script>
 </body>
 </html>
