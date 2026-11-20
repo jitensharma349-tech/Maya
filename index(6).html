@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#100c18">
+<title>Kavya AI — Real-Time Voice Assistant</title>
+<style>
+:root{--bg:#100c18;--panel:#191323;--panel2:#21192d;--text:#f7f1ff;--muted:#b8a9c8;--line:#392b49;--pink:#e99bd0;--violet:#b69aff;--accent:#caa6ff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(100% - 32px,1020px);margin:auto}
+header{padding:20px 0 12px}
+.brand{font-weight:800;letter-spacing:.12em;font-size:1.08rem}
+.brand span{color:var(--pink)}
+.topnav{display:flex;gap:16px;flex-wrap:wrap;margin-top:13px;color:var(--muted);font-size:.9rem}
+.topnav a:hover{color:white}
+.hero{padding:32px 0 20px}
+.eyebrow{color:var(--pink);font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700}
+h1{font-size:clamp(2rem,7vw,3.65rem);line-height:1.08;letter-spacing:-.035em;margin:10px 0}
+h1 .gradient{background:linear-gradient(90deg,#f1b7dc,#c4a8ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--muted);max-width:670px;margin:12px 0 20px}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 17px;border-radius:13px;border:1px solid var(--line);font-weight:700;min-height:46px}
+.btn.primary{background:linear-gradient(110deg,#d8a7ff,#eaa7d3);color:#211329;border:0}
+.btn.secondary{background:#21192d}
+.promo{margin:20px 0 25px;padding:11px 12px;background:#21182e;border:1px solid #49365c;border-radius:12px;display:flex;align-items:center;gap:10px;overflow:hidden}
+.live{flex:0 0 auto;color:#ffb9e3;font-size:.72rem;font-weight:800;letter-spacing:.12em}
+.promo-window{overflow:hidden;white-space:nowrap;flex:1;min-width:0}
+.promo-track{display:inline-flex;gap:38px;min-width:max-content;animation:slide 19s linear infinite}
+.promo-track span{color:#e9d9fa;font-size:.9rem}
+.promo-arrow{color:var(--pink);flex:0 0 auto}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.promo-track{animation:none}}
+section{padding:20px 0 24px}
+.section-title{font-size:1.45rem;margin:0 0 7px}
+.section-desc{color:var(--muted);margin:0 0 16px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:17px}
+.card h3{margin:0 0 7px;font-size:1.05rem}
+.card p{margin:0;color:var(--muted);font-size:.92rem}
+.icon{display:inline-grid;place-items:center;width:37px;height:37px;border-radius:11px;background:#30233e;color:#e5c4ff;margin-bottom:11px;font-size:1.12rem}
+.feature-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.feature{padding:13px;background:#171120;border:1px solid #33253f;border-radius:13px;color:#e5d9f0;font-size:.91rem}
+.profile{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}
+.profile-box{background:linear-gradient(140deg,#23192f,#191222);border:1px solid var(--line);border-radius:18px;padding:18px}
+.profile-box p{color:var(--muted);margin:.5em 0}
+.price-card{background:linear-gradient(145deg,#271b35,#191221);border:1px solid #59416d;border-radius:20px;padding:20px}
+.price{font-size:2.5rem;font-weight:850;letter-spacing:-.04em}
+.price small{font-size:.95rem;color:var(--muted);font-weight:500;letter-spacing:0}
+.pill{display:inline-block;padding:5px 9px;border-radius:99px;background:#342341;color:#e8c5ff;font-size:.75rem;font-weight:700}
+.download-area{margin-top:15px;padding-top:15px;border-top:1px solid var(--line)}
+.download-btn{width:100%;font-size:1rem}
+.note{font-size:.82rem;color:var(--muted);margin-top:10px}
+.setup{display:grid;gap:10px}
+.step{display:flex;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:13px}
+.step-num{font-weight:800;color:var(--pink);min-width:25px}
+.payment{border:1px dashed #604775;background:#191221;border-radius:17px;padding:18px}
+.payment p{color:var(--muted);margin:.5em 0}
+footer{border-top:1px solid var(--line);padding:22px 0 34px;color:var(--muted);font-size:.86rem}
+footer strong{color:var(--text)}
+@media(max-width:650px){.grid,.feature-list,.profile{grid-template-columns:1fr}.hero{padding-top:22px}.card,.profile-box{padding:15px}.topnav{gap:12px;font-size:.82rem}.promo{gap:8px}.promo-track{gap:24px}.wrap{width:min(100% - 24px,1020px)}}
+
+.pro-max-details{background:#191323;border:1px solid #59416d;border-radius:17px;overflow:hidden}
+.pro-max-details summary{list-style:none;display:flex;align-items:center;gap:12px;padding:15px;cursor:pointer;user-select:none}
+.pro-max-details summary::-webkit-details-marker{display:none}
+.pro-max-summary-icon{display:grid;place-items:center;width:39px;height:39px;flex:0 0 39px;background:#342341;border-radius:12px;font-size:1.15rem}
+.pro-max-summary-text{display:flex;flex:1;min-width:0;flex-direction:column;gap:2px}
+.pro-max-summary-text strong{font-size:.96rem}
+.pro-max-summary-text small{font-size:.79rem;color:var(--muted)}
+.pro-max-chevron{font-size:1.3rem;color:var(--pink);transition:transform .15s ease}
+.pro-max-details[open] .pro-max-chevron{transform:rotate(180deg)}
+.pro-max-content{border-top:1px solid var(--line);padding:16px}
+.pro-max-heading h3{font-size:1.35rem;margin:8px 0 4px}
+.pro-max-heading p{color:var(--muted);margin:0 0 14px}
+.pro-max-prices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pro-max-price-card{border:1px solid #49365c;background:#21182e;border-radius:14px;padding:13px;display:flex;flex-direction:column;gap:5px}
+.pro-max-price-card small{color:var(--muted)}
+.pro-max-price-card strong{font-size:1.5rem}
+.pro-max-price-card span{color:var(--muted);font-size:.82rem}
+.pro-max-content h4{margin:17px 0 8px}
+.pro-max-list{padding-left:20px;margin:0;color:#e5d9f0}
+.pro-max-list li{margin:7px 0}
+.pro-max-limit-note{margin-top:14px;border:1px solid #4b3b5b;border-radius:12px;padding:12px;color:var(--muted);font-size:.87rem}
+.pro-max-limit-note strong{color:var(--text)}
+.pro-max-cta{margin-top:14px;width:100%}
+.pro-max-close{text-align:center;padding:0 0 12px;color:var(--muted);font-size:.78rem;display:none}
+.pro-max-details[open] .pro-max-close{display:block}
+@media(max-width:520px){.pro-max-prices{grid-template-columns:1fr}.pro-max-summary-text small{max-width:225px}}
+
+</style>
+</head>
+<body>
+<header class="wrap">
+  <div class="brand">KAVYA <span>AI</span></div>
+  <nav class="topnav" aria-label="Main navigation">
+    <a href="#about">About</a><a href="#options">Options</a><a href="#license">License</a><a href="#download">Download</a><a href="#setup">Setup</a>
+  </nav>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Your personal AI companion</div>
+    <h1>Your voice.<br><span class="gradient">Your personal AI.</span></h1>
+    <p class="lead">Kavya is designed for natural, real-time voice conversations, helpful AI features, and hands-free assistance across your devices.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="#options">Explore Kavya <span aria-hidden="true">→</span></a>
+      <a class="btn secondary" href="#license">Lifetime License</a>
+    </div>
+  </section>
+
+  <div class="promo" aria-label="Kavya AI promotional banner">
+    <span class="live">LIVE</span>
+    <div class="promo-window">
+      <div class="promo-track">
+        <span>Kavya Get Online</span><span>›</span><span>Real-Time Voice Assistant</span><span>›</span><span>Live AI Companion</span><span>›</span>
+        <span>Kavya Get Online</span><span>›</span><span>Real-Time Voice Assistant</span><span>›</span><span>Live AI Companion</span><span>›</span>
+      </div>
+    </div>
+    <span class="promo-arrow" aria-hidden="true">→</span>
+  </div>
+
+  <section id="about">
+    <h2 class="section-title">About Kavya AI System</h2>
+    <p class="section-desc">A voice-first assistant concept built to make everyday digital tasks easier, with a simple interface and a focus on natural interaction.</p>
+    <div class="profile">
+      <div class="profile-box">
+        <h3>Kavya — your AI companion</h3>
+        <p>Talk naturally, ask questions, explore ideas, and use supported assistant tools from one place. Kavya's features will expand as services are connected and tested.</p>
+        <p><strong>Created by The Jiten AI</strong></p>
+      </div>
+      <div class="profile-box">
+        <h3>Designed for</h3>
+        <p>Voice conversations · Everyday assistance · AI tools · Android and PC experiences</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="options">
+    <h2 class="section-title">Choose your Kavya experience</h2>
+    <p class="section-desc">These options describe the planned features. Device control requires supported app permissions and a compatible build.</p>
+    <div class="grid">
+      <article class="card"><div class="icon">✦</div><h3>Kavya Profile</h3><p>Learn about Kavya, her voice-assistant features, supported tools, and how to get started.</p></article>
+      <article class="card"><div class="icon">⌁</div><h3>Android Phone Control</h3><p>Planned phone assistance for supported actions such as launching apps and selected device tasks—with user permission.</p></article>
+      <article class="card"><div class="icon">▣</div><h3>PC Control</h3><p>Planned desktop companion features for supported PC tasks, subject to installation and security permissions.</p></article>
+      <article class="card"><div class="icon">◉</div><h3>Real-Time Voice</h3><p>Voice interaction, listening and spoken responses when the required voice services are connected and available.</p></article>
+    </div>
+  </section>
+
+  <section id="features">
+    <h2 class="section-title">Kavya features</h2>
+    <p class="section-desc">Feature overview — live access depends on the app build and connected services.</p>
+    <div class="feature-list">
+      <div class="feature">🎙️ Real-time voice assistant</div><div class="feature">💬 AI chat & conversation</div>
+      <div class="feature">📷 Camera / visual assistance</div><div class="feature">🧠 Personal memory (when enabled)</div>
+      <div class="feature">📱 Android assistance</div><div class="feature">💻 PC companion concept</div>
+      <div class="feature">🌐 Online research tools</div><div class="feature">🔄 Updates & new features</div>
+    </div>
+  </section>
+
+  <section id="license">
+    <h2 class="section-title">License options</h2>
+    <p class="section-desc">Select a license option. Payment and key delivery will be connected after the merchant/payment setup is verified.</p>
+    <div class="grid">
+      <div class="card"><h3>Kavya License</h3><p>Lifetime access plan for the supported Kavya release. Final entitlements will be listed before checkout goes live.</p></div>
+      <div class="price-card">
+        <span class="pill">LIFETIME LICENSE</span>
+        <div class="price">₹699 <small>one-time</small></div>
+        <p class="section-desc">Planned lifetime license</p>
+        <a class="btn secondary" href="#payment">Payment setup details <span>→</span></a>
+        <div class="download-area" id="download">
+          <a class="btn primary download-btn" href="https://github.com/jitensharma349-tech/Maya/releases" target="_blank" rel="noopener">Download Kavya <span aria-hidden="true">↓</span></a>
+          <p class="note" id="download-info">Release downloads will appear here after the official Android APK or PC installer is published. The button currently opens the Releases page; no installer is published yet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup">
+    <h2 class="section-title">Setup guide</h2>
+    <p class="section-desc">The setup area is currently a guide layout; final instructions will be added for the released app.</p>
+    <div class="setup">
+      <div class="step"><span class="step-num">01</span><div><strong>Download the official build</strong><div class="note">Use the release download link after it is published.</div></div></div>
+      <div class="step"><span class="step-num">02</span><div><strong>Install and grant required permissions</strong><div class="note">Only grant permissions needed for features you choose to use.</div></div></div>
+      <div class="step"><span class="step-num">03</span><div><strong>Configure services and activate license</strong><div class="note">Service/API setup and license activation instructions will be provided when connected.</div></div></div>
+    </div>
+  </section>
+
+
+  <section id="pro-max">
+    <h2 class="section-title">Pro Max Plan</h2>
+    <p class="section-desc">Extra usage for people who need more from Kavya—while keeping API-heavy features under usage limits.</p>
+    <details class="pro-max-details">
+      <summary>
+        <span class="pro-max-summary-icon" aria-hidden="true">👆</span>
+        <span class="pro-max-summary-text"><strong>Open Pro Max setup & features</strong><small>Tap to view plan details, pricing and included usage</small></span>
+        <span class="pro-max-chevron" aria-hidden="true">⌄</span>
+      </summary>
+      <div class="pro-max-content">
+        <div class="pro-max-heading">
+          <span class="pill">PRO MAX</span>
+          <h3>Kavya Pro Max</h3>
+          <p>Designed for heavier use and advanced features.</p>
+        </div>
+        <div class="pro-max-prices">
+          <div class="pro-max-price-card"><small>First activation</small><strong>₹1,399</strong><span>Initial Pro Max license activation</span></div>
+          <div class="pro-max-price-card"><small>Monthly plan</small><strong>₹300 / month</strong><span>Renew monthly to keep enhanced usage active</span></div>
+        </div>
+        <h4>Pro Max includes (planned)</h4>
+        <ul class="pro-max-list">
+          <li>Higher monthly voice and AI usage allowance</li>
+          <li>More usage for supported research and assistant tasks</li>
+          <li>Higher—but still limited—allowance for app/code generation</li>
+          <li>Expanded supported phone and PC assistant actions</li>
+          <li>Priority access to selected Pro Max features, where available</li>
+        </ul>
+        <div class="pro-max-limit-note"><strong>Fair-use limits:</strong> App generation, long research, and other API-intensive tasks will have quotas so service costs remain manageable. Exact quotas and renewal rules will be published before payment is enabled.</div>
+        <a class="btn primary pro-max-cta" href="#payment">Pro Max payment setup <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="pro-max-close" aria-hidden="true">⌃ Tap to close</div>
+    </details>
+  </section>
+
+  <section id="payment">
+    <h2 class="section-title">Payment setup</h2>
+    <div class="payment">
+      <span class="pill">NOT CONNECTED YET</span>
+      <h3>Payments will be enabled after verification</h3>
+      <p>Payment methods suitable for Nepal and the account holder's country will be evaluated. The merchant account, bank details, payment gateway and verification must be completed before accepting payments.</p>
+      <p>Never enter bank account numbers, card details, or private payment credentials on this public website. Payment processing will use a verified provider or a secure, confirmed payment flow.</p>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap"><strong>Kavya AI</strong> · Real-Time Voice Assistant<br>Created by The Jiten AI<br><span>Website preview — payment, license activation, and downloads are not live yet.</span></div></footer>
+</body>
+</html>
